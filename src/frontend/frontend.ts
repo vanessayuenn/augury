@@ -29,7 +29,7 @@ const BASE_STYLES = require('!style!css!postcss!../styles/app.css');
   providers: [ParseUtils],
   directives: [TreeView, InfoPanel, AppTrees],
   template: `
-    <div class="clearfix">
+    <div class="clearfix" [ngClass]="{'dark-theme': darkTheme}">
       <div class="col col-6 overflow-hidden vh-100
       border-right border-color-dark"
       [ngClass]="{'col-12 overflow-scroll': selectedTabIndex > 0}">
@@ -45,7 +45,11 @@ const BASE_STYLES = require('!style!css!postcss!../styles/app.css');
       </div>
       <div class="col col-6 overflow-hidden vh-100"
       [hidden]="selectedTabIndex > 0">
-        <bt-info-panel [tree]="tree" [node]="selectedNode"></bt-info-panel>
+        <bt-info-panel
+          [tree]="tree"
+          [node]="selectedNode"
+          (toggleTheme)="toggleTheme()">
+        </bt-info-panel>
       </div>
     </div>`
 })
@@ -61,6 +65,7 @@ class App {
   private selectedNode: any;
   private openedNodes: Array<any> = [];
   private changedNodes: any = [];
+  private darkTheme: boolean = false;
 
   constructor(
     private backendAction: BackendActions,
@@ -135,6 +140,14 @@ class App {
     this.selectedTabIndex = index;
     if (index === 1) {
       this.userActions.renderRouterTree();
+    }
+  }
+
+  toggleTheme() {
+    this.darkTheme = !this.darkTheme;
+    console.log('toggle theme hi');
+    if (this.darkTheme) {
+
     }
   }
 }

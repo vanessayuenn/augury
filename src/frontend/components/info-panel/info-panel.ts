@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, NgZone, Input} from '@angular/core';
+import {Component, ElementRef, Inject, NgZone, Input, EventEmitter, Output} from '@angular/core';
 import {NgIf, NgClass} from '@angular/common';
 import * as Rx from 'rxjs';
 import {ComponentDataStore}
@@ -19,6 +19,7 @@ export class InfoPanel {
 
   @Input() tree: any;
   @Input() node: any;
+  @Output() toggleTheme = new EventEmitter();
 
   private selectedTabIndex: number = 0;
   private tabs = [{

@@ -5,6 +5,12 @@
     [selectedTabIndex]="selectedTabIndex">
     </bt-tab-menu>
 
+  <settings
+    (click)="toggleTheme.emit('event')"
+  >
+      x
+  </settings>
+
   <bt-component-info
     [node]="node"
     [hidden]="selectedTabIndex != 0"
